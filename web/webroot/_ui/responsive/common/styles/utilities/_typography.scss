@@ -1,0 +1,19 @@
+
+.list-piped {
+    @include list-piped($body-color, 14px)
+}
+
+.list-inline {
+    @include list-inline(14px);
+}
+
+
+// TODO: Add Mixin
+.link-icon {
+    color: $primary;
+
+    &:hover {
+        color: $secondary;
+        text-decoration: none;
+    }
+}

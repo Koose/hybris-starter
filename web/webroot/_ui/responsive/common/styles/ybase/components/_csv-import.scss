@@ -1,0 +1,56 @@
+.account-section .account-section-content .import-csv__form {
+    padding: 0;
+}
+.import-csv__well {
+   // @include full-width-padding();
+}
+.import-csv__file-spec {
+    padding-top: $grid-gutter-width - 5;
+}
+.import-csv__file-spec-item {
+    padding-top: 5px;
+}
+.import-csv__file-upload {
+    padding-top: $grid-gutter-width;
+}
+.import-csv__actions {
+    margin-top: 35px;
+    // @include full-width-padding();
+}
+
+////////////////////////////////
+//        file upload         //
+////////////////////////////////
+.file-upload {
+    margin-top: 15px;
+}
+.file-upload__label {
+    display: block;
+}
+.file-upload__wrapper {
+    position: relative;
+    overflow: hidden;
+    margin-right: $grid-gutter-width;
+}
+.file-upload__input {
+    position: absolute;
+    right: -3px;
+    top: -3px;
+    bottom: -3px;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+.file-upload__file-name {
+    font-size: $font-size-lg;
+    display: inline-block;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    position: relative;
+    top: 8px;
+}

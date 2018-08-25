@@ -1,0 +1,193 @@
+.product__facet {
+    margin: 0;
+    // border-right: 1px solid $border-color;
+    padding: 0;
+}
+
+.product__facet .facet {
+    padding: 45px 30px 30px 30px;
+    // border-bottom: 1px solid $border-color;
+    @include clearfix();
+
+    &:last-child {
+        margin: 0;
+    }
+
+    .facet__name {
+        font-size: 18px;
+        font-weight: bold;
+        color: $headings-color;
+        margin-left: -5px;
+    }
+
+    .facet__list {
+        @include list-unstyled();
+        margin:  ($grid-gutter-width/2) 0;
+
+        li{
+            padding: ($grid-gutter-width/2) 0;
+        }
+
+        label{
+            cursor: pointer;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .facet__list__mark {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            margin-right:  ($grid-gutter-width/2);
+            border: 1px solid $input-border-color;
+            text-align: center;
+            vertical-align: middle;
+            background: $input-bg;
+            margin-top: -3px;
+        }
+
+        .facet__list__checkbox:checked + .facet__list__label {
+
+            .facet__list__mark {
+                background: $link-color;
+                border:1px solid $link-color;
+                @include box-shadow(inset 0 0  0 1px $primary);
+            }
+
+            .facet__list__text {
+                color: $link-color;
+            }
+
+        }
+
+        .facet__list__checkbox:focus + .facet__list__label {
+            .facet__list__mark {
+                border:1px solid $primary;
+                @include box-shadow(inset 0 0  0 1px $primary);
+            }
+        }
+
+        .facet__list__text {
+            line-height: 20px;
+            color: $link-color;
+            font-size: $font-size-md;
+        }
+
+    }
+
+    .facet__list.facet__list--hidden {
+        display: none;
+    }
+
+    .facet__values__more {
+        display: block;
+    }
+
+    .facet__values__less {
+        display: none;
+    }
+
+
+    .facet__form {
+        padding-top: 10px;
+
+        .input-group {
+            background-color: $input-bg;
+            min-height: 32px;
+            border: 1px solid $input-border-color;
+
+            .form-control {
+                border: 0 none;
+                height: 32px;
+                box-shadow: none;
+            }
+
+            .btn {
+                width: 40px;
+                height: 32px;
+                line-height: 32px;
+                padding: 0;
+
+                .glyphicon-search {
+                    color: $searchbar-icon-color;
+                    font-size: 17px;
+                    top: 0;
+                }
+            }
+        }
+
+        .line-text {
+            margin: $grid-gutter-width 0;
+        }
+
+    }
+
+    .facet__form__hidden {
+        display: none;
+    }
+
+    .facet__results__hidden {
+        display: none;
+    }
+}
+
+
+@include media-breakpoint-down(md) {
+    .product__facet {
+        padding: ($grid-gutter-width/2);
+        margin: 0;
+        border: 0 none;
+
+        #colorbox &{
+            display: block !important;
+        }
+
+        .facet {
+            float: none;
+            width: 100%;
+            border:0;
+            margin: 0;
+            padding: 0 0  ($grid-gutter-width/2) 0;
+
+            .facet__name {
+                background: $gray-lightest;
+                cursor: pointer;
+                padding: ($grid-gutter-width/2);
+                padding-left: $grid-gutter-width * 2;
+                text-transform: uppercase;
+                position: relative;
+
+                .facet__arrow {
+                    font-size: $font-size-base;
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(0,-50%);
+                    left: $grid-gutter-width;
+
+                    &:before {
+                        @include icon-font($icon-angle-right);
+                    }
+                }
+            }
+
+            .facet__values {
+                display: none;
+            }
+        }
+
+        .facet.active {
+
+            .facet__arrow {
+                &:before {
+                    @include icon-font($icon-angle-down);
+                }
+            }
+
+            .facet__values{
+                display: block;
+            }
+
+        }
+    }
+}

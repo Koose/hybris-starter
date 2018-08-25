@@ -1,0 +1,18 @@
+@mixin icon-font($icon, $icon-color: inherit) {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'boilerplate' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    cursor: pointer;
+    content: $icon;
+    color: $icon-color;
+}

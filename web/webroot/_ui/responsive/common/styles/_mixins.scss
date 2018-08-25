@@ -1,0 +1,61 @@
+@import "mixins/typography";
+
+@import "mixins/icons";
+@import "mixins/layout";
+
+//
+@mixin copy-alignments($offset-padding: 10px) {
+    &.text-align-center {
+        text-align: center;
+    }
+
+    &.text-align-right {
+        text-align: right;
+    }
+
+    &.text-align-left {
+        text-align: left;
+    }
+
+    &.align-left {
+        left: $offset-padding;
+    }
+
+    &.align-center {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &.align-right {
+        right: $offset-padding;
+    }
+
+    &.valign-top {
+        top: $offset-padding;
+    }
+
+    &.valign-bottom {
+        bottom: $offset-padding;
+    }
+
+    &.dark_font_color {
+        color: $black;
+    }
+    &.light_font_color {
+        color: $white;
+    }
+
+    &.valign-center {
+        top: 50%;
+        transform: translateY(-50%);
+
+        &.align-center {
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+@mixin full-width-padding() {
+    padding-left: ($grid-gutter-width/2);
+    padding-right: ($grid-gutter-width/2);
+}

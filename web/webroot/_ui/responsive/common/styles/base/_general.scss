@@ -1,0 +1,34 @@
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: $font-size-base;
+    overflow-x: hidden;
+    position: relative;
+}
+
+
+body.offcanvas {
+    overflow-y: hidden;
+}
+
+.skip,
+.skiptocontent,
+.skiptonavigation {
+    @include sr-only();
+}
+
+
+
+//@TODO: revisit
+.no-margin{
+    margin: 0 !important;
+}
+//@TODO: revisit this class
+.container-lg {
+    @include media-breakpoint-up(xl) {
+        float: none;
+        margin: 0 auto !important;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,46 @@
+// Theme Specific Styles
+// ===
+
+// Adds ripple effect to buttons
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: lighten($white, 50%);
+    animation: ripple-animation 2s;
+}
+
+@keyframes ripple-animation {
+    from {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    to {
+        transform: scale(100);
+        opacity: 0;
+    }
+}
+
+
+img.lazy {
+    opacity: 0;
+    transition: opacity .4s ease;
+
+    &.loaded {
+        opacity: 1;
+    }
+}
+
+/*@include media-breakpoint-down(md) {
+    blockquote {
+        font-size: $font-size-h3;
+    }
+
+    // Reset positioning/opacity - TODO: need to come up with a better recommendation
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}*/

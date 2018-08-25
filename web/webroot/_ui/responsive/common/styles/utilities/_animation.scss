@@ -1,0 +1,23 @@
+
+.fade {
+    opacity: 0;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-duration;
+    transition-property: opacity, transform;
+
+    &.animate-in {
+        opacity: 0;
+
+        &.animate-in-active {
+            opacity: 1;
+        }
+    }
+
+    &.animate-out {
+        opacity: 1;
+
+        &.animate-out-active {
+            opacity: 0;
+        }
+    }
+}

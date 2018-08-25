@@ -1,0 +1,38 @@
+# -----------------------------------------------------------------------
+# Style Guide Page
+#
+# Change $contentCatalog for the project catalog
+# --------------------------------------------------------------------
+
+
+$contentCatalog=powertoolsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;StyleGuide;Style Guide;styleGuide/web-style-guide;ContentPage
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='StyleGuide'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+
+# Bind Content Slots to Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StyleGuide'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-StyleGuide;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-StyleGuide;HomepageNavLink;;HomepageNavLinkSlot;true
+;;MiniCart-StyleGuide;MiniCart;;MiniCartSlot;true
+;;NavigationBar-StyleGuide;NavigationBar;;NavigationBarSlot;true
+;;Footer-StyleGuide;Footer;;FooterSlot;true
+;;HeaderLinks-StyleGuide;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-StyleGuide;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-StyleGuide;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-StyleGuide;BottomHeaderSlot;;BottomHeaderSlot;true
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;styleguide;Style Guide Page;StyleGuide;/styleguide

@@ -1,0 +1,87 @@
+// product list Component
+// ===
+//
+// product list component used in many areas like pdp/search
+// References: https://css-tricks.com/bem-101/ & http://getbem.com/
+
+// Variables
+// ---
+
+$product-list-col-count: 4;
+
+
+// Core/Base Styles
+// ---
+
+.c-product-list {
+    @include list-unstyled();
+    @include make-row();
+}
+
+// Sub Components
+// ---
+
+.c-product-list__item {
+    @include make-col-ready();
+    @include make-col($grid-columns / $product-list-col-count);
+    margin: 20px 0;
+}
+
+
+.c-product-list__item-thumb {
+    display: flex;
+    margin-bottom: ($grid-gutter-width/2);
+    text-align: center;
+
+    // Accounting for inconsistent image sizes
+    height: 250px;
+    align-items: center;
+}
+
+.c-product-list__item-image {
+    height: auto;
+    max-width: 100%;
+}
+
+.c-product-list__item-details {
+    text-align: center;
+}
+
+.c-product-list__item-name {
+
+}
+
+.c-product-list__item-price {
+
+}
+
+.c-product-list__item-promo {
+
+}
+
+.c-product-list__item-actions {
+    clear: both;
+    text-align: center;
+    padding: ($grid-gutter-width/2) 0 0 0;
+
+    button {
+        margin-bottom: ($grid-gutter-width/4);
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .c-product-list__item {
+        @include make-col(6);
+    }
+}
+
+// Modifiers
+// ---
+
+.c-product-list--grid {
+
+}
+
+.c-product-list--list {
+
+}

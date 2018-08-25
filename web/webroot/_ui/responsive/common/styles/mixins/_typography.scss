@@ -1,0 +1,59 @@
+
+@mixin list-inline($list-spacing: 10px) {
+    @include list-unstyled();
+    display: inline-flex;
+    margin-bottom: 0;
+
+    & > li {
+        vertical-align: middle;
+        margin-left: $list-spacing;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
+@mixin list-piped($piped-color: $body-color, $piped-spacing: 10px) {
+    @include list-inline($piped-spacing);
+
+    & > li {
+        margin-left: 0;
+        padding: 0 $piped-spacing;
+        border-left: 1px solid $piped-color;
+        display: flex;
+        align-items: center;
+
+        &:first-child {
+            margin-left: 0;
+            border-left: 0;
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+}
+
+
+// @Todo - Revisit
+@mixin page-headline() {
+    color: $body-color;
+    font-size: $font-size-lg;
+    line-height: 35px;
+    font-weight: $font-weight-bold;
+    padding: $grid-gutter-width/2 0;
+    margin: 0;
+
+    &.border {
+        border-bottom: 1px solid $border-color;
+        margin-bottom: $grid-gutter-width + 5;
+    }
+}
+// @Todo - Revisit
+@mixin page-sub-headline() {
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    line-height: 1.571;
+}

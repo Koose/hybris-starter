@@ -1,0 +1,114 @@
+// Product Facets
+// ===
+//
+// The product facets is used on plp/search pages to filter/sort the products based on an attribute
+// References: https://css-tricks.com/bem-101/ & http://getbem.com/
+
+// Variables
+// ---
+
+// Core/Base Styles
+// ---
+
+.c-facets {
+
+}
+
+// Sub Components
+// ---
+
+.c-facets__group {
+    margin-bottom: 40px;
+}
+
+.c-facets__name {
+    font-size: $h4-font-size;
+}
+
+.c-facets__items {
+
+}
+
+.c-facets__item {
+
+}
+
+.c-facets__item-label {
+
+}
+
+.c-facets__item-text {
+
+}
+
+.c-facets__more {
+    display: block;
+}
+
+.c-facets__less {
+    display: none;
+}
+
+.c-facets__selected {
+
+}
+
+.c-facets__selected-items {
+
+}
+
+.c-facets__remove {
+
+}
+
+@include media-breakpoint-down(md) {
+    .c-facets {
+        float: none;
+        width: 100%;
+        border:0;
+        margin: 0;
+        padding: 0 0 ($grid-gutter-width/2) 0;
+
+        &.active {
+            .c-facets__name-arrow {
+                &:before {
+                    @include icon-font($icon-angle-down);
+                }
+            }
+
+            .c-facets__values {
+                display: block;
+            }
+        }
+    }
+
+    .c-facets__name {
+        background: $gray-lightest;
+        cursor: pointer;
+        padding: ($grid-gutter-width/2);
+        padding-left: $grid-gutter-width * 2;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .c-facets__name-arrow {
+        font-size: $font-size-base;
+        position: absolute;
+        top: 50%;
+        transform: translate(0,-50%);
+        left: $grid-gutter-width;
+
+        &:before {
+            @include icon-font($icon-angle-right);
+        }
+    }
+
+    .c-facets__values {
+        display: none;
+    }
+}
+
+// Modifiers
+// ---
+
+// ...

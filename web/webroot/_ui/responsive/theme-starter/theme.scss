@@ -1,0 +1,28 @@
+// Theme Stylesheet
+// ===
+
+// Theme Variables
+// ---
+
+@import "styles/variables";
+
+// Theme Icons
+// ---
+
+@import "styles/icons";
+
+
+// Common Styles
+// ---
+
+@import "../common/styles/common";
+
+
+// Hybris Accelerator (Base)
+// ---
+
+@import "../common/styles/ybase/ybase";
+
+// Theme Specific Styles
+// ---
+@import "styles/theme";

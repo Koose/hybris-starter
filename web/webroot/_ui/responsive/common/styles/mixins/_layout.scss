@@ -1,0 +1,4 @@
+@mixin container() {
+    @include make-container();
+    max-width: map-get($container-max-widths, xl);
+}

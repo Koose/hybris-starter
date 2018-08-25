@@ -1,0 +1,52 @@
+.login-page__headline,
+.user-register__headline{
+    // @include page-headline();
+}
+
+.login-left-content-slot{
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+.login-right-content-slot{
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
+.forgotten-password{
+    form & {
+        margin-bottom: 25px;
+    }
+
+    &.alert {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .description{
+        margin-bottom: ($grid-gutter-width/2);
+    }
+
+    #colorbox & .btn-primary {
+        margin-top: 35px;
+    }
+}
+
+.register-form-action, .login-form-action {
+    margin-top: 35px;
+}
+
+.forgotten-password + .login-form-action {
+    margin-top: 0;
+}
+
+.alert-dismissable,
+.alert-dismissible  {
+    .close {
+        right: 0;
+    }
+}
+
+.register__container {
+    // @include full-width-padding();
+}

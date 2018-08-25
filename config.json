@@ -1,0 +1,84 @@
+{
+  "entry": {
+    "theme-starter/theme": [
+      "./theme-starter/theme.js",
+      "./theme-starter/theme.scss"
+    ],
+
+    "common/vendor": [
+      "./common/js/vendor/_popper.js",
+      "./common/js/vendor/tether.min.js",
+      "./common/js/vendor/jquery-ui-1.11.2.min.js",
+      "bootstrap/dist/js/bootstrap",
+      "./common/js/vendor/jquery.creditCardValidator.js",
+      "./common/js/vendor/jquery.currencies.min.js",
+      "./common/js/vendor/aos.js",
+      "./common/js/vendor/jquery.form.js",
+      "./common/js/vendor/jquery.pstrength.custom-1.2.0.js",
+      "./common/js/vendor/jquery.waitforimages.min.js",
+      "./common/js/vendor/jquery.zoom.custom.js",
+      "./common/js/vendor/slick.js",
+      "./common/js/vendor/jquery.colorbox-min.js",
+      "./common/js/vendor/Imager.min.js"
+    ],
+
+    "common/ybase": [
+      "./common/js/ybase/acc.global.js",
+      "./common/js/ybase/acc.address.js",
+      "./common/js/ybase/acc.autocomplete.js",
+      "./common/js/ybase/acc.cart.js",
+      "./common/js/ybase/acc.cartItem.js",
+      "./common/js/ybase/acc.checkout.js",
+      "./common/js/ybase/acc.checkoutaddress.js",
+      "./common/js/ybase/acc.checkoutsteps.js",
+      "./common/js/ybase/acc.closeaccount.js",
+      "./common/js/ybase/acc.cms.js",
+      "./common/js/ybase/acc.common.js",
+      "./common/js/ybase/acc.consent.js",
+      "./common/js/ybase/acc.cookienotification.js",
+      "./common/js/ybase/acc.csv-import.js",
+      "./common/js/ybase/acc.forgottenpassword.js",
+      "./common/js/ybase/acc.futurelink.js",
+      "./common/js/ybase/acc.hopdebug.js",
+      "./common/js/ybase/acc.imagegallery.js",
+      "./common/js/ybase/acc.langcurrencyselector.js",
+      "./common/js/ybase/acc.multidgrid.js",
+      "./common/js/ybase/acc.navigation.js",
+      "./common/js/ybase/acc.order.js",
+      "./common/js/ybase/acc.paginationsort.js",
+      "./common/js/ybase/acc.payment.js",
+      "./common/js/ybase/acc.paymentDetails.js",
+      "./common/js/ybase/acc.pickupinstore.js",
+      "./common/js/ybase/acc.product.js",
+      "./common/js/ybase/acc.productDetail.js",
+      "./common/js/ybase/acc.productorderform.js",
+      "./common/js/ybase/acc.quickorder.js",
+      "./common/js/ybase/acc.quickview.js",
+      "./common/js/ybase/acc.quote.js",
+      "./common/js/ybase/acc.ratingstars.js",
+      "./common/js/ybase/acc.refinements.js",
+      "./common/js/ybase/acc.sanitizer.js",
+      "./common/js/ybase/acc.savedcarts.js",
+      "./common/js/ybase/acc.silentorderpost.js",
+      "./common/js/ybase/acc.storefinder.js",
+      "./common/js/ybase/acc.tabs.js",
+      "./common/js/ybase/acc.termsandconditions.js",
+      "./common/js/ybase/acc.track.js",
+      "./common/js/ybase/_autoload.js"
+    ],
+
+    "common/app": [
+      "./common/js/app.js"
+    ]
+  },
+  "open": "external",
+  "publicPath": "/yb2bacceleratorstorefront/_ui",
+  "devUrl": "https://powertools.local:9002/yb2bacceleratorstorefront",
+  "proxyUrl": "https://powertools.local:9005",
+  "cacheBusting": "[name]_[hash:8]",
+  "watch": [
+    "app/**/*.php",
+    "config/**/*.php",
+    "resources/views/**/*.php"
+  ]
+}

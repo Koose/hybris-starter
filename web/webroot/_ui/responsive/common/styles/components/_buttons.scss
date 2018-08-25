@@ -1,0 +1,32 @@
+.back-link {
+    padding-top: $grid-gutter-width;
+    padding-bottom: $grid-gutter-width;
+
+    &.border {
+        border-bottom: 1px solid $border-color;
+    }
+
+    button {
+        padding: 0;
+    }
+
+    .icon-prev {
+        border-right: 1px solid $border-color;
+        border-radius: 0;
+        padding-right: 10px;
+        line-height: 16px;
+        top: -2px;
+    }
+}
+
+.back-link__link {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.back-link__label {
+    @include page-headline();
+    padding-left: 10px;
+    white-space: normal;
+}

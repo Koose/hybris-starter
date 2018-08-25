@@ -1,0 +1,18 @@
+// Checkout Page Styles
+
+.form-element-icon {
+  position: relative;
+
+  .icon-calendar {
+    position: absolute;
+  }
+
+  &.date-picker {
+    .icon-calendar {
+      top: 60px;
+      right: 10px;
+      color: $primary;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+// Hybris Accelerator (Base)
+// ===
+
+@import "variables";
+
+
+// Components
+// ---
+
+@import "components/addtocart-component";
+@import "components/_banner";
+@import "components/carousel";
+@import "components/coupon";
+@import "components/csv-import";
+@import "components/image-gallery";
+@import "components/inlineLayer";
+@import "components/item-list";
+@import "components/navigation";
+@import "components/order-form";
+@import "components/pickup";
+@import "components/quick-view-popup";
+
+// Layout
+// ---
+
+@import "layout/account";
+@import "layout/addressbook";
+@import "layout/cart";
+@import "layout/checkout";
+@import "layout/footer";
+@import "layout/header";
+@import "layout/landingLayout2page";
+@import "layout/login-section";
+@import "layout/pdp";
+@import "layout/quick-order";
+@import "layout/storefinder";
+
+// Vendor
+// ---
+@import "vendor/jquery";
+
+// Print
+// ---
+
+//@import "print";

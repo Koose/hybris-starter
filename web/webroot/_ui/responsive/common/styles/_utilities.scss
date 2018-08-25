@@ -1,0 +1,8 @@
+@import "utilities/animation";
+@import "utilities/typography";
+@import "utilities/visibility";
+
+.hide,
+.display-none {
+    display: none;
+}

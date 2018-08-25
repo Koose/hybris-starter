@@ -1,0 +1,35 @@
+//
+// Pagination (multiple pages)
+// --------------------------------------------------
+
+
+.pagination-wrap {
+    margin-left: auto;
+    align-self: flex-end;
+}
+
+.pagination{
+    margin: 0;
+}
+
+@include media-breakpoint-down(xs) {
+    .pagination {
+        display: table;
+        width: 100%;
+
+        > li {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+
+            > a,
+            > span {
+                float: none;
+            }
+        }
+    }
+
+    .pagination-with-pager .pagination-wrap {
+        float: none;
+    }
+}

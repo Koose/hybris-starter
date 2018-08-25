@@ -1,0 +1,85 @@
+// Filters Component
+// ===
+//
+// A high level description of this sample component goes here.
+// References: https://css-tricks.com/bem-101/ & http://getbem.com/
+
+// Variables
+// ---
+
+// Core/Base Styles
+// ---
+
+.c-filters {
+    display: none;
+}
+
+
+
+// Sub Components
+// ---
+
+.c-filters__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $link-color;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+        text-decoration: none;
+        font-weight: normal;
+    }
+
+    //sort dropdown styles
+    .pagination-wrap,
+    .pagination-sort-label,
+    .pagination-refine-container {
+        display: none !important;
+
+    }
+
+    .pagination-bar,
+    .pagination-toolbar {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .sort-refine-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+
+        select {
+            cursor: pointer;
+        }
+    }
+}
+
+.c-filters__link--bordered {
+    border-right: 1px solid $link-color;
+}
+
+.c-filters__icon {
+    margin-right: 8px;
+}
+
+@include media-breakpoint-down(md) {
+    .c-filters {
+        background: $gray-lightest;
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-top: 1px solid $link-color;
+        padding: 10px;
+    }
+}

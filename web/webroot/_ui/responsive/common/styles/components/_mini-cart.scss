@@ -1,0 +1,129 @@
+// Mini Cart
+// ===
+//
+// References: https://css-tricks.com/bem-101/ & http://getbem.com/
+
+// Variables
+// ---
+
+$mini-cart-layer-width: 350px;
+$mini-cart-layer-padding: 20px;
+$mini-cart-layer-background: $white;
+
+$mini-cart-badge-size: 20px;
+$mini-cart-badge-background: $primary;
+$mini-cart-badge-color: $white;
+
+$mini-cart-icon-size: 30px;
+
+// Core/Base Styles
+// ---
+
+.c-mini-cart {
+    padding: 15px 20px 10px;
+    position: relative;
+}
+
+// Modifiers
+// ---
+
+// ...
+
+// Sub Components
+// ---
+
+.c-mini-cart__trigger {
+    display: inline-block;
+    position: relative;
+}
+
+.c-mini-cart__count {
+    display: inline-block;
+    width: $mini-cart-badge-size;
+    height: $mini-cart-badge-size;
+    line-height: $mini-cart-badge-size;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 50%;
+    background: $mini-cart-badge-background;
+    color: $mini-cart-badge-color;
+    font-size: $mini-cart-badge-size / 2;
+
+    position: absolute;
+    top: -($mini-cart-badge-size / 2);
+    right: -($mini-cart-badge-size / 1.5);
+}
+
+.c-mini-cart__icon {
+    font-size: $mini-cart-icon-size;
+}
+
+.c-mini-cart__price {
+    display: none;
+}
+
+.c-mini-cart__layer {
+    display: none;
+    padding: $mini-cart-layer-padding;
+    width: $mini-cart-layer-width;
+    background: $mini-cart-layer-background;
+
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: $zindex-dropdown;
+}
+
+.c-mini-cart__content {
+
+}
+
+.c-mini-cart__header {
+
+}
+
+.c-mini-cart__show-all {
+
+}
+
+.c-mini-cart__items {
+
+}
+
+.c-mini-cart__item {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid $border-color;
+
+    justify-content: space-between;
+}
+
+.c-mini-cart__item-details {
+    width: 60%;
+}
+
+.c-mini-cart__item-image {
+
+}
+
+.c-mini-cart__totals {
+    padding: 20px 0;
+}
+
+.c-mini-cart__totals-key {
+    float: left;
+    font-weight: $font-weight-bold;
+}
+
+.c-mini-cart__totals-value {
+    float: right;
+}
+
+.c-mini-cart__actions {
+
+}
+
+// Sub Component Modifier
+
+// ...
