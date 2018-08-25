@@ -6,7 +6,7 @@ ACC.storefinder = {
 		["bindSearch", $(".js-store-finder").length != 0],
 		"bindPagination"
 	],
-	
+
 	storeData:"",
 	storeId:"",
 	coords:{},
@@ -15,7 +15,7 @@ ACC.storefinder = {
 	createListItemHtml: function (data,id){
 
 		var item="";
-		item+='<li class="list__entry">';
+		item+='<li class="list__entry koose">';
 		item+='<input type="radio" name="storeNamePost" value="'+data.displayName+'" id="store-filder-entry-'+id+'" class="js-store-finder-input" data-id="'+id+'">';
 		item+='<label for="store-filder-entry-'+id+'" class="js-select-store-label">';
 		item+='<span class="entry__info">';
@@ -34,14 +34,14 @@ ACC.storefinder = {
 	refreshNavigation: function (){
 		var listitems = "";
 		data = ACC.storefinder.storeData
-		
+
 		if(data){
 			for(i = 0;i < data["data"].length;i++){
 				listitems += ACC.storefinder.createListItemHtml(data["data"][i],i)
 			}
-	
+
 			$(".js-store-finder-navigation-list").html(listitems);
-	
+
 			// select the first store
 			var firstInput= $(".js-store-finder-input")[0];
 			$(firstInput).click();
@@ -63,14 +63,14 @@ ACC.storefinder = {
 	{
 
 
-		
+
 		$(document).on("click",".js-store-finder-details-back",function(e){
 			e.preventDefault();
-			
+
 			$(".js-store-finder").removeClass("show-store");
-			
+
 		})
-		
+
 
 
 
@@ -94,7 +94,7 @@ ACC.storefinder = {
 			}else{
 				$(".js-store-finder-pager-prev").removeAttr("disabled")
 			}
-			
+
 			if(page == Math.floor(ACC.storefinder.storeData.total/10)){
 				$(".js-store-finder-pager-next").attr("disabled","disabled")
 			}else{
@@ -117,7 +117,7 @@ ACC.storefinder = {
 			var storeId=$(this).data("id");
 
 			var $ele = $(".js-store-finder-details");
-			
+
 
 
 			$.each(storeData[storeId],function(key,value){
@@ -190,16 +190,16 @@ ACC.storefinder = {
 			ACC.global.addGoogleMapsApi("ACC.storefinder.loadGoogleMap");
 		}
 	},
- 
+
 	loadGoogleMap: function(){
 
 		storeInformation = ACC.storefinder.storeId;
 
 		if($(".js-store-finder-map").length > 0)
-		{			
+		{
 			$(".js-store-finder-map").attr("id","store-finder-map")
 			var centerPoint = new google.maps.LatLng(storeInformation["latitude"], storeInformation["longitude"]);
-			
+
 			var mapOptions = {
 				zoom: 13,
 				zoomControl: true,
@@ -208,9 +208,9 @@ ACC.storefinder = {
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 				center: centerPoint
 			}
-			
+
 			var map = new google.maps.Map(document.getElementById("store-finder-map"), mapOptions);
-			
+
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(storeInformation["latitude"], storeInformation["longitude"]),
 				map: map,
@@ -225,7 +225,7 @@ ACC.storefinder = {
 				infowindow.open(map, marker);
 			});
 		}
-		
+
 	},
 
 
