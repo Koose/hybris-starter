@@ -196,6 +196,7 @@ ACC.storefinder = {
     bindSearch: function () {
         $(document).on('submit', '#storeFinderForm', function (e) {
             e.preventDefault();
+
             var q = $('.js-store-finder-search-input').val();
 
             if (q.length > 0) {
@@ -222,6 +223,19 @@ ACC.storefinder = {
     getStoreData: function (page) {
         ACC.storefinder.storeSearchData.page = page;
         var url = $('.js-store-finder').data('url');
+        // var data = JSON.stringify(ACC.storefinder.storeSearchData);
+
+        // TODO rewrite ajax into fetch
+        // fetch(url)
+        //     .then(response => {
+        //         ACC.storefinder.storeData = $.parseJSON(response);
+        //         ACC.storefinder.refreshNavigation();
+        //         if (ACC.storefinder.storeData.total < 10) {
+        //             $('.js-store-finder-pager-next').attr('disabled', 'disabled');
+        //         }
+        //     })
+        //     .catch(error => console.error(`Error occurred: ${error}`));
+
         $.ajax({
             url: url,
             data: ACC.storefinder.storeSearchData,
