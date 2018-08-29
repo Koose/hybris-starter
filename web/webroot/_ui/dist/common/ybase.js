@@ -5142,20 +5142,7 @@ ACC.storefinder = {
   coords: {},
   storeSearchData: {},
   createListItemHtml: function createListItemHtml(data, id) {
-    var item = '';
-    item += '<li class="list__entry koose-2">';
-    item += '<input type="radio" name="storeNamePost" value="' + data.displayName + '" id="store-filder-entry-' + id + '" class="js-store-finder-input" data-id="' + id + '">';
-    item += '<label for="store-filder-entry-' + id + '" class="js-select-store-label">';
-    item += '<span class="entry__info">';
-    item += '<span class="entry__name">' + data.displayName + '</span>';
-    item += '<span class="entry__address">' + data.line1 + ' ' + data.line2 + '</span>';
-    item += '<span class="entry__city">' + data.town + '</span>';
-    item += '</span>';
-    item += '<span class="entry__distance">';
-    item += '<span>' + data.formattedDistance + '</span>';
-    item += '</span>';
-    item += '</label>';
-    item += '</li>';
+    var item = "<li class=\"list__entry\">\n            <input type=\"radio\" name=\"storeNamePost\" value=\"".concat(data.displayName, "\" id=\"store-filder-entry-").concat(id, "\" class=\"js-store-finder-input\" data-id=\"").concat(id, "\">\n            <label for=\"store-filder-entry-").concat(id, "\" class=\"js-select-store-label\">\n                <span class=\"entry__info\">\n                    <span class=\"entry__name\">").concat(data.displayName, "</span>\n                    <span class=\"entry__address\">").concat(data.line1, "\xA0").concat(data.line2, "</span>\n                    <span class=\"entry__city\">").concat(data.town, "</span>\n                </span>\n                <span class=\"entry__distance\">\n                    <span>").concat(data.formattedDistance, "</span>\n                </span>\n            </label>\n        </li>");
     return item;
   },
   refreshNavigation: function refreshNavigation() {

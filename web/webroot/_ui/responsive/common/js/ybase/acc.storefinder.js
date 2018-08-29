@@ -14,20 +14,20 @@ ACC.storefinder = {
     storeSearchData: {},
 
     createListItemHtml: function (data, id) {
-        var item = '';
-        item += '<li class="list__entry koose-2">';
-        item += '<input type="radio" name="storeNamePost" value="' + data.displayName + '" id="store-filder-entry-' + id + '" class="js-store-finder-input" data-id="' + id + '">';
-        item += '<label for="store-filder-entry-' + id + '" class="js-select-store-label">';
-        item += '<span class="entry__info">';
-        item += '<span class="entry__name">' + data.displayName + '</span>';
-        item += '<span class="entry__address">' + data.line1 + ' ' + data.line2 + '</span>';
-        item += '<span class="entry__city">' + data.town + '</span>';
-        item += '</span>';
-        item += '<span class="entry__distance">';
-        item += '<span>' + data.formattedDistance + '</span>';
-        item += '</span>';
-        item += '</label>';
-        item += '</li>';
+        var item =
+        `<li class="list__entry">
+            <input type="radio" name="storeNamePost" value="${data.displayName}" id="store-filder-entry-${id}" class="js-store-finder-input" data-id="${id}">
+            <label for="store-filder-entry-${id}" class="js-select-store-label">
+                <span class="entry__info">
+                    <span class="entry__name">${data.displayName}</span>
+                    <span class="entry__address">${data.line1}\u00A0${data.line2}</span>
+                    <span class="entry__city">${data.town}</span>
+                </span>
+                <span class="entry__distance">
+                    <span>${data.formattedDistance}</span>
+                </span>
+            </label>
+        </li>`;
         return item;
     },
 
