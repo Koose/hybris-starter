@@ -222,32 +222,17 @@ ACC.storefinder = {
 
     getStoreData: function (page) {
         ACC.storefinder.storeSearchData.page = page;
-        var url = $('.js-store-finder').data('url');
-        // var data = JSON.stringify(ACC.storefinder.storeSearchData);
+        var url = `${$('.js-store-finder').data('url')}?${$.param(ACC.storefinder.storeSearchData)}`;
 
-        // TODO rewrite ajax into fetch
-        // fetch(url)
-        //     .then(response => {
-        //         ACC.storefinder.storeData = $.parseJSON(response);
-        //         ACC.storefinder.refreshNavigation();
-        //         if (ACC.storefinder.storeData.total < 10) {
-        //             $('.js-store-finder-pager-next').attr('disabled', 'disabled');
-        //         }
-        //     })
-        //     .catch(error => console.error(`Error occurred: ${error}`));
-
-        $.ajax({
-            url: url,
-            data: ACC.storefinder.storeSearchData,
-            type: 'get',
-            success: function (response) {
-                ACC.storefinder.storeData = $.parseJSON(response);
+        fetch(url)
+            .then(response => response.json())
+            .then(response => {
+                ACC.storefinder.storeData = response;
                 ACC.storefinder.refreshNavigation();
                 if (ACC.storefinder.storeData.total < 10) {
                     $('.js-store-finder-pager-next').attr('disabled', 'disabled');
                 }
-            }
-        });
+            });
     },
 
     getInitStoreData: function (q, latitude, longitude) {

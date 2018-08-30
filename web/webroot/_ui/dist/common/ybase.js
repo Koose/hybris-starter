@@ -5311,29 +5311,15 @@ ACC.storefinder = {
   },
   getStoreData: function getStoreData(page) {
     ACC.storefinder.storeSearchData.page = page;
-    var url = $('.js-store-finder').data('url'); // var data = JSON.stringify(ACC.storefinder.storeSearchData);
-    // TODO rewrite ajax into fetch
-    // fetch(url)
-    //     .then(response => {
-    //         ACC.storefinder.storeData = $.parseJSON(response);
-    //         ACC.storefinder.refreshNavigation();
-    //         if (ACC.storefinder.storeData.total < 10) {
-    //             $('.js-store-finder-pager-next').attr('disabled', 'disabled');
-    //         }
-    //     })
-    //     .catch(error => console.error(`Error occurred: ${error}`));
+    var url = "".concat($('.js-store-finder').data('url'), "?").concat($.param(ACC.storefinder.storeSearchData));
+    fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (response) {
+      ACC.storefinder.storeData = response;
+      ACC.storefinder.refreshNavigation();
 
-    $.ajax({
-      url: url,
-      data: ACC.storefinder.storeSearchData,
-      type: 'get',
-      success: function success(response) {
-        ACC.storefinder.storeData = $.parseJSON(response);
-        ACC.storefinder.refreshNavigation();
-
-        if (ACC.storefinder.storeData.total < 10) {
-          $('.js-store-finder-pager-next').attr('disabled', 'disabled');
-        }
+      if (ACC.storefinder.storeData.total < 10) {
+        $('.js-store-finder-pager-next').attr('disabled', 'disabled');
       }
     });
   },
