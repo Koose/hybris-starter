@@ -5134,6 +5134,14 @@ $(document).ready(function () {
 "use strict";
 
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 // PageClass - This may include some global functionality?
 ACC.storefinder = {
   _autoload: [['init', $('.js-store-finder').length !== 0], ['bindStoreChange', $('.js-store-finder').length !== 0], ['bindSearch', $('.js-store-finder').length !== 0], 'bindPagination'],
@@ -5150,8 +5158,31 @@ ACC.storefinder = {
     var data = ACC.storefinder.storeData;
 
     if (data) {
-      for (var i = 0; i < data['data'].length; i++) {
-        listitems += ACC.storefinder.createListItemHtml(data['data'][i], i);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = data['data'].entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var _step$value = _slicedToArray(_step.value, 2),
+              index = _step$value[0],
+              store = _step$value[1];
+
+          listitems += ACC.storefinder.createListItemHtml(store, index);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
       }
 
       $('.js-store-finder-navigation-list').html(listitems); // select the first store
@@ -5205,41 +5236,67 @@ ACC.storefinder = {
       var storeData = ACC.storefinder.storeData['data'];
       var storeId = $(this).data('id');
       var $ele = $('.js-store-finder-details');
-      $.each(storeData[storeId], function (key, value) {
-        if (key === 'image') {
-          if (value !== '') {
-            $ele.find('.js-store-image').html('<img src="' + value + '" alt="" />');
-          } else {
-            $ele.find('.js-store-image').html('');
-          }
-        } else if (key === 'productcode') {
-          $ele.find('.js-store-productcode').val(value);
-        } else if (key === 'openings') {
-          if (value !== '') {
-            var $oele = $ele.find('.js-store-' + key);
-            var openings = '';
-            $.each(value, function (key2, value2) {
-              openings += '<dt>' + key2 + '</dt>';
-              openings += '<dd>' + value2 + '</dd>';
-            });
-            $oele.html(openings);
-          } else {
-            $ele.find('.js-store-' + key).html('');
-          }
-        } else if (key === 'specialOpenings') {} else if (key === 'features') {
-          var features = '';
-          $.each(value, function (key2, value2) {
-            features += '<li>' + value2 + '</li>';
-          });
-          $ele.find('.js-store-' + key).html(features);
-        } else {
-          if (value !== '') {
-            $ele.find('.js-store-' + key).html(value);
-          } else {
-            $ele.find('.js-store-' + key).html('');
-          }
+
+      var _arr2 = Object.entries(storeData[storeId]);
+
+      for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
+        var _arr2$_i = _slicedToArray(_arr2[_i2], 2),
+            key = _arr2$_i[0],
+            value = _arr2$_i[1];
+
+        switch (key) {
+          case 'image':
+            var imgHTML = value !== '' ? "<img src=\"".concat(value, "\" alt=\"\" />") : '';
+            $ele.find('.js-store-image').html(imgHTML);
+            break;
+
+          case 'productcode':
+            $ele.find('.js-store-productcode').val(value);
+            break;
+
+          case 'openings':
+            if (value !== '') {
+              var $oele = $ele.find(".js-store-".concat(key));
+              var openings = '';
+
+              var _arr3 = Object.entries(value);
+
+              for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
+                var _arr3$_i = _slicedToArray(_arr3[_i3], 2),
+                    key2 = _arr3$_i[0],
+                    value2 = _arr3$_i[1];
+
+                openings += "<dt>".concat(key2, "</dt>\n                                 <dd>").concat(value2, "<dd>");
+              }
+
+              $oele.html(openings);
+            } else {
+              $ele.find(".js-store-".concat(key)).html('');
+            }
+
+            break;
+
+          case 'specialOpenings':
+            break;
+
+          case 'features':
+            var features = '';
+
+            var _arr4 = Object.entries(value);
+
+            for (var _i4 = 0; _i4 < _arr4.length; _i4++) {
+              var value2 = _arr4[_i4];
+              features += "<li>".concat(value2, "</li>");
+            }
+
+            $ele.find(".js-store-".concat(key)).html(features);
+            break;
+
+          default:
+            $ele.find(".js-store-".concat(key)).html(value);
         }
-      });
+      }
+
       ACC.storefinder.storeId = storeData[storeId];
       ACC.storefinder.initGoogleMap();
     });

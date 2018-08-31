@@ -36,8 +36,8 @@ ACC.storefinder = {
         var data = ACC.storefinder.storeData;
 
         if (data) {
-            for (var i = 0; i < data['data'].length; i++) {
-                listitems += ACC.storefinder.createListItemHtml(data['data'][i], i);
+            for (var [index, store] of data['data'].entries()) {
+                listitems += ACC.storefinder.createListItemHtml(store, index);
             }
 
             $('.js-store-finder-navigation-list').html(listitems);
@@ -102,43 +102,48 @@ ACC.storefinder = {
 
             var $ele = $('.js-store-finder-details');
 
-            $.each(storeData[storeId], function (key, value) {
-                if (key === 'image') {
-                    if (value !== '') {
-                        $ele.find('.js-store-image').html('<img src="' + value + '" alt="" />');
-                    } else {
-                        $ele.find('.js-store-image').html('');
-                    }
-                } else if (key === 'productcode') {
-                    $ele.find('.js-store-productcode').val(value);
-                } else if (key === 'openings') {
-                    if (value !== '') {
-                        var $oele = $ele.find('.js-store-' + key);
-                        var openings = '';
-                        $.each(value, function (key2, value2) {
-                            openings += '<dt>' + key2 + '</dt>';
-                            openings += '<dd>' + value2 + '</dd>';
-                        });
+            for (let [key, value] of Object.entries(storeData[storeId])) {
+                switch (key) {
+                    case 'image':
+                        let imgHTML = value !== '' ? `<img src="${value}" alt="" />` : '';
+                        $ele.find('.js-store-image').html(imgHTML);
+                        break;
+                    case 'productcode':
+                        $ele.find('.js-store-productcode').val(value);
+                        break;
+                    case 'openings':
+                        if (value !== '') {
+                            var $oele = $ele.find(`.js-store-${key}`);
+                            var openings = '';
 
-                        $oele.html(openings);
-                    } else {
-                        $ele.find('.js-store-' + key).html('');
-                    }
-                } else if (key === 'specialOpenings') {} else if (key === 'features') {
-                    var features = '';
-                    $.each(value, function (key2, value2) {
-                        features += '<li>' + value2 + '</li>';
-                    });
+                            for (let [key2, value2] of Object.entries(value)) {
+                                openings +=
+                                `<dt>${key2}</dt>
+                                 <dd>${value2}<dd>`;
+                            }
 
-                    $ele.find('.js-store-' + key).html(features);
-                } else {
-                    if (value !== '') {
-                        $ele.find('.js-store-' + key).html(value);
-                    } else {
-                        $ele.find('.js-store-' + key).html('');
-                    }
+                            $oele.html(openings);
+                        } else {
+                            $ele.find(`.js-store-${key}`).html('');
+                        }
+                        break;
+                    case 'specialOpenings':
+
+                        break;
+                    case 'features':
+                        var features = '';
+
+                        for (let value2 of Object.entries(value)) {
+                            features += `<li>${value2}</li>`;
+                        }
+
+                        $ele.find(`.js-store-${key}`).html(features);
+                        break;
+
+                    default:
+                        $ele.find(`.js-store-${key}`).html(value);
                 }
-            });
+            }
 
             ACC.storefinder.storeId = storeData[storeId];
             ACC.storefinder.initGoogleMap();

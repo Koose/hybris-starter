@@ -5,6 +5,7 @@ import Common from './pages/common/common';
 import Home from './pages/home/home';
 import PLP from './pages/plp/plp';
 import PDP from './pages/pdp/pdp';
+import StoreFinder from './pages/store-finder/store-finder';
 
 const $body = $('body');
 
@@ -12,7 +13,8 @@ const $body = $('body');
 const PageClasses = {
     'page-homepage': Home,
     'page-productGrid': PLP,
-    'page-productDetails': PDP
+    'page-productDetails': PDP,
+    'page-storefinderPage': StoreFinder
 };
 
 // Bootstraps common logic
