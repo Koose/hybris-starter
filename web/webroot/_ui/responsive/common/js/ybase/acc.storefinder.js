@@ -1,10 +1,10 @@
 // PageClass - This may include some global functionality?
-ACC.storefinder = {
+koose_this = {
 
     _autoload: [
-        ['init', $('.js-store-finder').length !== 0],
-        ['bindStoreChange', $('.js-store-finder').length !== 0],
-        ['bindSearch', $('.js-store-finder').length !== 0],
+        ['init', $storeFinder.length !== 0],
+        ['bindStoreChange', $storeFinder.length !== 0],
+        ['bindSearch', $storeFinder.length !== 0],
         'bindPagination'
     ],
 
@@ -33,142 +33,88 @@ ACC.storefinder = {
 
     refreshNavigation: function () {
         var listitems = '';
-        var data = ACC.storefinder.storeData;
+        var data = koose_this.storeData;
 
         if (data) {
             for (var [index, store] of data['data'].entries()) {
-                listitems += ACC.storefinder.createListItemHtml(store, index);
+                listitems += koose_this.createListItemHtml(store, index);
             }
 
-            $('.js-store-finder-navigation-list').html(listitems);
+            $navigationList.html(listitems);
 
             // select the first store
-            var firstInput = $('.js-store-finder-input')[0];
+            var firstInput = $storeFinderInput[0];
             $(firstInput).click();
         }
 
-        var page = ACC.storefinder.storeSearchData.page;
-        $('.js-store-finder-pager-item-from').html(page * 10 + 1);
+        var page = koose_this.storeSearchData.page;
+        $paginationFrom.html(page * 10 + 1);
 
-        var to = ((page * 10 + 10) > ACC.storefinder.storeData.total) ? ACC.storefinder.storeData.total : page * 10 + 10;
-        $('.js-store-finder-pager-item-to').html(to);
-        $('.js-store-finder-pager-item-all').html(ACC.storefinder.storeData.total);
-        $('.js-store-finder').removeClass('show-store');
+        var to = ((page * 10 + 10) > koose_this.storeData.total) ? koose_this.storeData.total : page * 10 + 10;
+        $paginationTo.html(to);
+        $paginationAll.html(koose_this.storeData.total);
+        $storeFinder.removeClass('show-store');
     },
 
     bindPagination: function () {
         $(document).on('click', '.js-store-finder-details-back', function (e) {
             e.preventDefault();
 
-            $('.js-store-finder').removeClass('show-store');
+            $storeFinder.removeClass('show-store');
         });
 
         $(document).on('click', '.js-store-finder-pager-prev', function (e) {
             e.preventDefault();
-            var page = ACC.storefinder.storeSearchData.page;
-            ACC.storefinder.getStoreData(page - 1);
+            var page = koose_this.storeSearchData.page;
+            koose_this.getStoreData(page - 1);
             checkStatus(page - 1);
         });
 
         $(document).on('click', '.js-store-finder-pager-next', function (e) {
             e.preventDefault();
-            var page = ACC.storefinder.storeSearchData.page;
-            ACC.storefinder.getStoreData(page + 1);
+            var page = koose_this.storeSearchData.page;
+            koose_this.getStoreData(page + 1);
             checkStatus(page + 1);
         });
 
         function checkStatus (page) {
             if (page === 0) {
-                $('.js-store-finder-pager-prev').attr('disabled', 'disabled');
+                $paginationPrev.attr('disabled', 'disabled');
             } else {
-                $('.js-store-finder-pager-prev').removeAttr('disabled');
+                $paginationPrev.removeAttr('disabled');
             }
 
-            if (page === Math.floor(ACC.storefinder.storeData.total / 10)) {
-                $('.js-store-finder-pager-next').attr('disabled', 'disabled');
+            if (page === Math.floor(koose_this.storeData.total / 10)) {
+                $paginationNext.attr('disabled', 'disabled');
             } else {
-                $('.js-store-finder-pager-next').removeAttr('disabled');
+                $paginationNext.removeAttr('disabled');
             }
         }
     },
 
     bindStoreChange: function () {
-        $(document).on('change', '.js-store-finder-input', function (e) {
-            e.preventDefault();
 
-            var storeData = ACC.storefinder.storeData['data'];
-
-            var storeId = $(this).data('id');
-
-            var $ele = $('.js-store-finder-details');
-
-            for (let [key, value] of Object.entries(storeData[storeId])) {
-                switch (key) {
-                    case 'image':
-                        let imgHTML = value !== '' ? `<img src="${value}" alt="" />` : '';
-                        $ele.find('.js-store-image').html(imgHTML);
-                        break;
-                    case 'productcode':
-                        $ele.find('.js-store-productcode').val(value);
-                        break;
-                    case 'openings':
-                        if (value !== '') {
-                            var $oele = $ele.find(`.js-store-${key}`);
-                            var openings = '';
-
-                            for (let [key2, value2] of Object.entries(value)) {
-                                openings +=
-                                `<dt>${key2}</dt>
-                                 <dd>${value2}<dd>`;
-                            }
-
-                            $oele.html(openings);
-                        } else {
-                            $ele.find(`.js-store-${key}`).html('');
-                        }
-                        break;
-                    case 'specialOpenings':
-
-                        break;
-                    case 'features':
-                        var features = '';
-
-                        for (let value2 of Object.entries(value)) {
-                            features += `<li>${value2}</li>`;
-                        }
-
-                        $ele.find(`.js-store-${key}`).html(features);
-                        break;
-
-                    default:
-                        $ele.find(`.js-store-${key}`).html(value);
-                }
-            }
-
-            ACC.storefinder.storeId = storeData[storeId];
-            ACC.storefinder.initGoogleMap();
-        });
 
         $(document).on('click', '.js-select-store-label', function (e) {
-            $('.js-store-finder').addClass('show-store');
+            $storeFinder.addClass('show-store');
         });
 
         $(document).on('click', '.js-back-to-storelist', function (e) {
-            $('.js-store-finder').removeClass('show-store');
+            $storeFinder.removeClass('show-store');
         });
     },
 
     initGoogleMap: function () {
-        if ($('.js-store-finder-map').length > 0) {
-            ACC.global.addGoogleMapsApi('ACC.storefinder.loadGoogleMap');
+        if ($storeFinderMap.length > 0) {
+            ACC.global.addGoogleMapsApi('koose_this.loadGoogleMap');
         }
     },
 
     loadGoogleMap: function () {
-        var storeInformation = ACC.storefinder.storeId;
+        var storeInformation = koose_this.storeId;
 
-        if ($('.js-store-finder-map').length > 0) {
-            $('.js-store-finder-map').attr('id', 'store-finder-map');
+        if ($storeFinderMap.length > 0) {
+            $storeFinderMap.attr('id', 'store-finder-map');
             var centerPoint = new google.maps.LatLng(storeInformation['latitude'], storeInformation['longitude']);
 
             var mapOptions = {
@@ -205,11 +151,11 @@ ACC.storefinder = {
             var q = $('.js-store-finder-search-input').val();
 
             if (q.length > 0) {
-                ACC.storefinder.getInitStoreData(q);
+                koose_this.getInitStoreData(q);
             } else {
                 if ($('.js-storefinder-alert').length < 1) {
                     var emptySearchMessage = $('.btn-primary').data('searchEmpty');
-                    $('.js-store-finder').hide();
+                    $storeFinder.hide();
                     $('#storeFinder').before('<div class="js-storefinder-alert alert alert-danger alert-dismissable getAccAlert" ><button class="close closeAccAlert" type="button" data-dismiss="alert" aria-hidden="true">×</button>' + emptySearchMessage + '</div>');
                     $('.closeAccAlert').on('click', function () {
                         $(this).parent('.getAccAlert').remove();
@@ -218,24 +164,24 @@ ACC.storefinder = {
             }
         });
 
-        $('.js-store-finder').hide();
+        $storeFinder.hide();
         $(document).on('click', '#findStoresNearMe', function (e) {
             e.preventDefault();
-            ACC.storefinder.getInitStoreData(null, ACC.storefinder.coords.latitude, ACC.storefinder.coords.longitude);
+            koose_this.getInitStoreData(null, koose_this.coords.latitude, koose_this.coords.longitude);
         });
     },
 
     getStoreData: function (page) {
-        ACC.storefinder.storeSearchData.page = page;
-        var url = `${$('.js-store-finder').data('url')}?${$.param(ACC.storefinder.storeSearchData)}`;
+        koose_this.storeSearchData.page = page;
+        var url = `${$storeFinder.data('url')}?${$.param(koose_this.storeSearchData)}`;
 
         fetch(url)
             .then(response => response.json())
             .then(response => {
-                ACC.storefinder.storeData = response;
-                ACC.storefinder.refreshNavigation();
-                if (ACC.storefinder.storeData.total < 10) {
-                    $('.js-store-finder-pager-next').attr('disabled', 'disabled');
+                koose_this.storeData = response;
+                koose_this.refreshNavigation();
+                if (koose_this.storeData.total < 10) {
+                    $paginationNext.attr('disabled', 'disabled');
                 }
             });
     },
@@ -258,25 +204,11 @@ ACC.storefinder = {
             data.longitude = longitude;
         }
 
-        ACC.storefinder.storeSearchData = data;
-        ACC.storefinder.getStoreData(data.page);
-        $('.js-store-finder').show();
-        $('.js-store-finder-pager-prev').attr('disabled', 'disabled');
-        $('.js-store-finder-pager-next').removeAttr('disabled');
+        koose_this.storeSearchData = data;
+        koose_this.getStoreData(data.page);
+        $storeFinder.show();
+        $paginationPrev.attr('disabled', 'disabled');
+        $paginationNext.removeAttr('disabled');
     },
 
-    init: function () {
-        $('#findStoresNearMe').attr('disabled', 'disabled');
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    ACC.storefinder.coords = position.coords;
-                    $('#findStoresNearMe').removeAttr('disabled');
-                },
-                function (error) {
-                    console.log('An error occurred... The error code and message are: ' + error.code + '/' + error.message);
-                }
-            );
-        }
-    }
 };
